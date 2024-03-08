@@ -4,7 +4,7 @@ import { styles } from "./styles";
 import React, { useEffect, useState } from "react";
 import { SelectedsCounter } from "../SelectedsCounter/SelectedsCounter";
 import { router } from "expo-router";
-import { services } from "@/services/services-wrapper";
+import { services } from "@/services";
 
 export function Ingredients() {
   const [selected, setSelected] = useState<string[]>([]);
@@ -29,11 +29,11 @@ export function Ingredients() {
   };
 
   const handleSearchSelecteds = () => {
-    router.navigate("/recipies");
+    router.navigate("/recipes/" + selected);
   };
 
   useEffect(() => {
-    services.ingredients.findAll().then(setIngredients);
+    services.ingredientes.findAll().then(setIngredients);
   });
 
   return (
