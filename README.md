@@ -28,7 +28,9 @@ To get a local copy up and running follow these simple steps:
    ```sh
    npx expo start
    ```
-4. Follow the instructions in the terminal or Expo Developer Tools to preview the app on your device or emulator.
+4. Create supabase database and put the credencials: EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY in your .env or .env.local
+
+5. Follow the instructions in the terminal or Expo Developer Tools to preview the app on your device or emulator.
 
 ## Contributing
 
@@ -45,4 +47,5 @@ Contributions are what make the open-source community such an amazing place to l
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Disclaimer
+
 This is a fork of https://github.com/orodrigogo/react-native-na-pratica-1.git
