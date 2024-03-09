@@ -1,11 +1,11 @@
-import { supabase } from "./supabase"
+import { supabase } from "./supabase";
 
 async function findByIngredientsIds(ids: string[]) {
   const { data } = await supabase
     .rpc("recipes_by_ingredients", { ids })
-    .returns<RecipeResponse[]>()
+    .returns<RecipeResponse[]>();
 
-  return data ?? []
+  return data ?? [];
 }
 
 async function show(id: string) {
@@ -14,9 +14,9 @@ async function show(id: string) {
     .select()
     .eq("id", id)
     .returns<RecipeResponse>()
-    .single()
+    .single();
 
-  return data
+  return data;
 }
 
-export { findByIngredientsIds, show }
+export { findByIngredientsIds, show };

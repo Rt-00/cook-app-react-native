@@ -1,4 +1,4 @@
-import { supabase } from "./supabase"
+import { supabase } from "./supabase";
 
 async function findByIds(ids: string[]) {
   const { data } = await supabase
@@ -6,19 +6,29 @@ async function findByIds(ids: string[]) {
     .select()
     .in("id", ids)
     .order("name")
-    .returns<IngredientResponse[]>()
+    .returns<IngredientResponse[]>();
 
-  return data ?? []
+  return data ?? [];
 }
 
 async function findByRecipeId(id: string) {
-  const { data } = await supabase
+  const response_data = await supabase
     .from("recipes_ingredients")
-    .select("ingredients (id, name, image)")
+    .select()
     .eq("recipe_id", id)
-    .returns<{ ingredients: IngredientResponse }[]>()
+    .returns<RecipesIngredientsResponse[]>();
 
-  return data ? data.map((item) => item.ingredients) : []
+  const ingredientsIds = response_data.data?.map((item) => {
+    return item.ingredient_id;
+  });
+
+  const { data } = await supabase
+    .from("ingredients")
+    .select()
+    .in("id", ingredientsIds!)
+    .returns<IngredientResponse[]>();
+
+  return data ? data.map((item) => item) : [];
 }
 
 async function findAll() {
@@ -26,9 +36,9 @@ async function findAll() {
     .from("ingredients")
     .select()
     .order("name")
-    .returns<IngredientResponse[]>()
+    .returns<IngredientResponse[]>();
 
-  return data ?? []
+  return data ?? [];
 }
 
-export { findAll, findByIds, findByRecipeId }
+export { findAll, findByIds, findByRecipeId };

@@ -1,11 +1,11 @@
-import { Text, View } from "react-native"
-
-import { styles } from "./styles"
+import { Text, View } from "react-native";
+import { styles } from "./styles";
+import React from "react";
 
 type Props = {
-  step: number
-  description: string
-}
+  step: number;
+  description: string;
+};
 
 export function Step({ step, description }: Props) {
   return (
@@ -14,5 +14,5 @@ export function Step({ step, description }: Props) {
 
       <Text style={styles.description}>{description}</Text>
     </View>
-  )
+  );
 }
